@@ -91,12 +91,6 @@ export function FintechLanding() {
             </nav>
 
             <div className="flex items-center gap-3">
-              <Link
-                href="/paste"
-                className="hidden text-sm text-slate-400 transition-colors hover:text-white sm:inline"
-              >
-                HTML lab
-              </Link>
               <a
                 href="#waitlist"
                 className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
@@ -354,9 +348,6 @@ export function FintechLanding() {
               <a href="#security" className="hover:text-white">
                 Terms
               </a>
-              <Link href="/paste" className="hover:text-white">
-                HTML lab
-              </Link>
             </div>
             <p className="text-xs text-slate-600">© {new Date().getFullYear()} TrackVision</p>
           </div>
