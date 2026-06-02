@@ -4,7 +4,11 @@ import { FormEvent, useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function WaitlistForm() {
+type WaitlistFormProps = {
+  className?: string;
+};
+
+export function WaitlistForm({ className = "" }: WaitlistFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string | null>(null);
 
@@ -49,9 +53,9 @@ export function WaitlistForm() {
   }
 
   return (
-    <div className="mt-10">
+    <div className={className}>
       <form
-        className="flex flex-col gap-3 sm:flex-row sm:justify-center"
+        className="flex flex-col gap-3 sm:flex-row lg:justify-start"
         onSubmit={handleSubmit}
       >
         <label htmlFor="waitlist-email" className="sr-only">

@@ -1,5 +1,16 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
+import { SectionImage } from "@/components/SectionImage";
 import { WaitlistForm } from "@/components/WaitlistForm";
+
+const landingImages = {
+  hero: "/images/pool.jpeg",
+  product: "/images/app-screenshot.png",
+  security:
+    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+  waitlist:
+    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+} as const;
 
 const nav = [
   { label: "Students & new grads", href: "#product" },
@@ -63,7 +74,7 @@ export function FintechLanding() {
         className="pointer-events-none absolute inset-0 opacity-40"
         aria-hidden
       >
-        <div className="absolute -left-1/4 top-0 h-[520px] w-[520px] rounded-full bg-emerald-500/30 blur-[120px]" />
+        <div className="absolute -left-1/4 top-0 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px]" />
         <div className="absolute -right-1/4 top-1/3 h-[420px] w-[420px] rounded-full bg-teal-400/20 blur-[100px]" />
         <div className="absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full bg-cyan-500/15 blur-[90px]" />
       </div>
@@ -71,12 +82,7 @@ export function FintechLanding() {
       <div className="relative z-10">
         <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
           <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/25">
-                TV
-              </span>
-              TrackVision
-            </Link>
+            <BrandLogo size="md" priority />
 
             <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
               {nav.map((item) => (
@@ -103,41 +109,45 @@ export function FintechLanding() {
 
         <main>
           <section className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24 md:pb-28">
-            <div className="max-w-3xl">
-              <p className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </span>
-                Built with students & new grads in mind
-              </p>
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">
-                Graduate toward{" "}
-                <span className="bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">
-                  financial freedom
-                </span>
-                <span className="text-slate-500">—</span> spend smart, live a cost-of-living-smart life after graduation.
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-400">
-                TrackVision helps you plan past the diploma: adjust for real cost of living, build smarter spending habits, and see your runway—from first big-city rent to crushing loans—without shame or spreadsheets.
-              </p>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href="#waitlist"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-                >
-                  Join the student waitlist
-                </a>
-                <a
-                  href="#product"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/25 hover:bg-white/10"
-                >
-                  How it helps after graduation
-                </a>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <div className="max-w-xl lg:max-w-none">
+                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">
+                  Graduate toward{" "}
+                  <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
+                    financial freedom
+                  </span>
+                  <span className="text-slate-500">—</span> spend smart, live a cost-of-living-smart life after graduation.
+                </h1>
+                <p className="mt-6 text-lg leading-relaxed text-slate-400">
+                  We read the long textbooks and tedious budgeting spreadsheets so you don&apos;t have to.
+                </p>
+                <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href="#waitlist"
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-teal-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
+                  >
+                    Join the student waitlist
+                  </a>
+                  <a
+                    href="#product"
+                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/25 hover:bg-white/10"
+                  >
+                    How it helps after graduation
+                  </a>
+                </div>
+                <p className="mt-6 text-xs text-slate-500">
+                  Student-friendly pricing at launch. Link accounts read-only; upgrade only when you want automations.
+                </p>
               </div>
-              <p className="mt-6 text-xs text-slate-500">
-                Student-friendly pricing at launch. Link accounts read-only; upgrade only when you want automations.
-              </p>
+
+              <SectionImage
+                src={landingImages.hero}
+                alt="Rooftop pool overlooking the city at sunset"
+                priority
+                aspect="portrait"
+                objectPosition="center 35%"
+                className="ring-1 ring-blue-500/20"
+              />
             </div>
 
             <div className="relative mt-16 md:mt-20">
@@ -191,13 +201,24 @@ export function FintechLanding() {
 
           <section id="product" className="border-t border-white/10 bg-slate-950/50 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <div className="max-w-2xl">
-                <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  From “broke college kid” to intentional adulting.
-                </h2>
-                <p className="mt-4 text-lg text-slate-400">
-                  You’re not bad with money—you’re adapting to a new income, new rent, and new temptations. TrackVision is the coach in your pocket for smarter trade-offs and a lifestyle that fits your city, not your feed.
-                </p>
+              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                <div className="max-w-2xl">
+                  <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    From “broke college kid” to intentional adulting.
+                  </h2>
+                  <p className="mt-4 text-lg text-slate-400">
+                    You’re not bad with money—you’re adapting to a new income, new rent, and new temptations. TrackVision is the coach in your pocket for smarter trade-offs and a lifestyle that fits your city, not your feed.
+                  </p>
+                </div>
+                <SectionImage
+                  src={landingImages.product}
+                  alt="Movus app budget details screen on iPhone"
+                  aspect="phone"
+                  zoom={1.55}
+                  objectPosition="center 42%"
+                  overlay="minimal"
+                  className="border-blue-500/20 bg-slate-950 ring-1 ring-blue-500/25 lg:order-last"
+                />
               </div>
               <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {features.map((f) => (
@@ -256,24 +277,31 @@ export function FintechLanding() {
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-8 backdrop-blur">
-                  <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
-                    Compliance posture
-                  </p>
-                  <div className="mt-6 space-y-4">
-                    {[
-                      { k: "Data residency", v: "US & CA regions" },
-                      { k: "Session security", v: "Passkeys + WebAuthn" },
-                      { k: "Incident response", v: "24/7 on-call" },
-                    ].map((row) => (
-                      <div
-                        key={row.k}
-                        className="flex items-center justify-between border-b border-white/10 pb-4 last:border-0 last:pb-0"
-                      >
-                        <span className="text-sm text-slate-400">{row.k}</span>
-                        <span className="text-sm font-medium text-white">{row.v}</span>
-                      </div>
-                    ))}
+                <div className="relative">
+                  <SectionImage
+                    src={landingImages.security}
+                    alt="Secure digital banking and data protection"
+                    aspect="portrait"
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 z-20 rounded-xl border border-white/10 bg-slate-950/90 p-5 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6 sm:p-6">
+                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
+                      Compliance posture
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      {[
+                        { k: "Data residency", v: "US & CA regions" },
+                        { k: "Session security", v: "Passkeys + WebAuthn" },
+                        { k: "Incident response", v: "24/7 on-call" },
+                      ].map((row) => (
+                        <div
+                          key={row.k}
+                          className="flex items-center justify-between gap-4 border-b border-white/10 pb-3 last:border-0 last:pb-0"
+                        >
+                          <span className="text-sm text-slate-400">{row.k}</span>
+                          <span className="text-sm font-medium text-white">{row.v}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -318,36 +346,41 @@ export function FintechLanding() {
           </section>
 
           <section id="waitlist" className="border-t border-white/10 py-20 sm:py-28">
-            <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Snag your spot before cap & gown season.
-              </h2>
-              <p className="mt-4 text-lg text-slate-400">
-                Get the invite, a grad money checklist, and tips for adjusting your budget to your first city’s cost of living.
-              </p>
-              <WaitlistForm />
-              <p className="mt-4 text-xs text-slate-500">
-                We’ll only email you about TrackVision. Unsubscribe anytime.
-              </p>
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                <SectionImage
+                  src={landingImages.waitlist}
+                  alt="Friends celebrating graduation together outdoors"
+                  aspect="video"
+                  className="order-2 lg:order-1"
+                />
+                <div className="order-1 text-center lg:order-2 lg:text-left">
+                  <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    Snag your spot before cap & gown season.
+                  </h2>
+                  <p className="mt-4 text-lg text-slate-400">
+                    Get the invite, a grad money checklist, and tips for adjusting your budget to your first city’s cost of living.
+                  </p>
+                  <WaitlistForm className="mt-8" />
+                  <p className="mt-4 text-xs text-slate-500">
+                    We’ll only email you about TrackVision. Unsubscribe anytime.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
         </main>
 
         <footer className="border-t border-white/10 py-10">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
-            <div className="flex items-center gap-2 font-semibold text-white">
-              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-emerald-400 to-teal-600 text-xs font-bold text-slate-950">
-                TV
-              </span>
-              TrackVision
-            </div>
+            <BrandLogo size="sm" />
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-              <a href="#security" className="hover:text-white">
-                Privacy
-              </a>
-              <a href="#security" className="hover:text-white">
-                Terms
-              </a>
+              <Link href="/privacy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-white">
+                Terms of Service
+              </Link>
             </div>
             <p className="text-xs text-slate-600">© {new Date().getFullYear()} TrackVision</p>
           </div>

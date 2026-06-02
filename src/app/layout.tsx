@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TrackVision — Financial freedom for students & new grads",
+  title: "MovUs — Financial freedom for students & new grads",
   description:
     "Plan past graduation: smarter spending, cost-of-living adjusted budgets, and a clear runway to financial freedom—built for students becoming smart consumers.",
 };
