@@ -6,7 +6,6 @@ import { ProjectionCalculator } from "@/components/ProjectionCalculator";
 
 const landingImages = {
   hero: "/images/pool.jpeg",
-  product: "/images/app-screenshot.png",
   security:
     "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
   waitlist:
@@ -20,7 +19,7 @@ const nav = [
 ];
 
 // Widely reported U.S. figures used to frame the problem. Keep citations handy
-// (see footnote) — these are industry context, not TrackVision statistics.
+// (see footnote) — these are industry context, not Movus statistics.
 const realityStats = [
   { value: "$1.7T+", label: "in U.S. student loan debt" },
   { value: "~$38K", label: "average loan balance per borrower" },
@@ -149,7 +148,7 @@ export function FintechLanding() {
                   <span className="text-slate-500">.</span>
                 </h1>
                 <p className="mt-6 text-lg leading-relaxed text-slate-400">
-                  TrackVision turns every paycheck into a simple 70/10/10/10 plan
+                  Movus turns every paycheck into a simple 70/10/10/10 plan
                   and projects your savings, debt, and investments all the way to
                   your graduation date.
                 </p>
@@ -202,7 +201,7 @@ export function FintechLanding() {
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
                   <span className="ml-2 flex-1 truncate text-center text-xs text-slate-500">
-                    TrackVision · Dashboard
+                    Movus · Dashboard
                   </span>
                 </div>
                 <div className="grid gap-px bg-white/5 md:grid-cols-3">
@@ -277,11 +276,11 @@ export function FintechLanding() {
                 ))}
               </div>
               <p className="mx-auto mt-8 max-w-2xl text-center text-lg text-slate-300">
-                Nobody handed you a class on this. TrackVision is the money coach
+                Nobody handed you a class on this. Movus is the money coach
                 that turns the overwhelming into a plan you can actually follow.
               </p>
               <p className="mx-auto mt-4 max-w-3xl text-center text-xs text-slate-600">
-                * Widely reported U.S. figures shown for context, not TrackVision results.
+                * Widely reported U.S. figures shown for context, not Movus results.
               </p>
             </div>
           </section>
@@ -289,27 +288,6 @@ export function FintechLanding() {
           {/* PRODUCT / FEATURES */}
           <section id="product" className="border-t border-white/10 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                <div className="max-w-2xl">
-                  <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                    From “broke college kid” to intentional adulting.
-                  </h2>
-                  <p className="mt-4 text-lg text-slate-400">
-                    You&apos;re not bad with money—you&apos;re adapting to new
-                    income, new rent, and new temptations. TrackVision gives you a
-                    plan, projects it forward, and coaches you along the way.
-                  </p>
-                </div>
-                <SectionImage
-                  src={landingImages.product}
-                  alt="TrackVision app dashboard on iPhone"
-                  aspect="phone"
-                  zoom={1.55}
-                  objectPosition="center 42%"
-                  overlay="minimal"
-                  className="border-blue-500/20 bg-slate-950 ring-1 ring-blue-500/25 lg:order-last"
-                />
-              </div>
               <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((f) => (
                   <div
@@ -438,7 +416,7 @@ export function FintechLanding() {
                 </div>
               </div>
               <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-slate-500">
-                Not financial advice. TrackVision provides budgeting tools and general education.
+                Not financial advice. Movus provides budgeting tools and general education.
               </p>
             </div>
           </section>
@@ -463,7 +441,7 @@ export function FintechLanding() {
                   </p>
                   <WaitlistForm className="mt-8" />
                   <p className="mt-4 text-xs text-slate-500">
-                    We&apos;ll only email you about TrackVision. Unsubscribe anytime.
+                    We&apos;ll only email you about Movus. Unsubscribe anytime.
                   </p>
                 </div>
               </div>
@@ -482,7 +460,7 @@ export function FintechLanding() {
                 Terms of Service
               </Link>
             </div>
-            <p className="text-xs text-slate-600">© {new Date().getFullYear()} TrackVision</p>
+            <p className="text-xs text-slate-600">© {new Date().getFullYear()} Movus</p>
           </div>
         </footer>
       </div>
