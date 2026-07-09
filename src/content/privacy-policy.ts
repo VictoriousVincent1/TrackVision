@@ -2,7 +2,7 @@ import type { LegalSection } from "@/components/LegalDocument";
 
 export const privacyPolicy = {
   title: "Privacy Policy",
-  lastUpdated: "June 1, 2026",
+  lastUpdated: "July 9, 2026",
   body: "",
   sections: [
     {
@@ -56,7 +56,11 @@ If you connect external financial institutions, payment providers, banks, accoun
     },
     {
       heading: "4. Artificial Intelligence Features",
-      content: `Our Service may use artificial intelligence, machine learning, and automated systems to analyze financial information and generate recommendations, forecasts, summaries, and planning suggestions.
+      content: `Our Service includes optional AI features — the "AI Advisor" chat and the "Weekly Insight" summary — that use artificial intelligence to analyze your financial information and generate recommendations, forecasts, summaries, and planning suggestions.
+
+Third-party AI processing. These features are powered by Google's Gemini AI service (Google LLC). When you use them, a summary of your financial data is sent to Google for processing. This summary may include your income, budget rule, spending totals, savings and investment goals, debt and loan balances, and financial health score. Your name, email, bank login credentials, and full account numbers are NOT sent. Google processes this data to generate a response and is not provided with your identity. Google's handling of this data is governed by Google's own privacy terms.
+
+Your control. AI features are off until you explicitly opt in. Before any data is shared, the app tells you what is sent and asks for your permission. You can review or withdraw this consent at any time from the app's Profile screen; withdrawing it stops all sharing with the AI service.
 
 AI-generated outputs:
 • May contain errors, inaccuracies, or incomplete information.
@@ -87,7 +91,7 @@ You should consult qualified professionals before making significant financial d
 
 • Service providers and infrastructure partners
 • Analytics providers
-• AI service providers that assist in generating features
+• AI service providers that assist in generating features (currently Google LLC's Gemini service — see Section 4 for what is shared and how to control it)
 • Legal authorities when required by law
 • Successors in the event of a merger, acquisition, or sale
 
