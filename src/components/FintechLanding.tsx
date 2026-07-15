@@ -3,6 +3,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { SectionImage } from "@/components/SectionImage";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { ProjectionCalculator } from "@/components/ProjectionCalculator";
+import { APP_STORE_URL } from "@/lib/site";
 
 const landingImages = {
   hero: "/images/pool.jpeg",
@@ -15,7 +16,7 @@ const landingImages = {
 const nav = [
   { label: "How it works", href: "#product" },
   { label: "Projections", href: "#projection" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Blog", href: "/blog" },
 ];
 
 // Widely reported U.S. figures used to frame the problem. Keep citations handy
@@ -95,8 +96,16 @@ const features = [
 const stats = [
   { value: "70/10/10/10", label: "your whole plan in four numbers" },
   { value: "0–100", label: "financial health score, updated daily" },
-  { value: "7-day", label: "free trial of Premium — cancel anytime" },
+  { value: "$0", label: "every feature, free — no subscription" },
 ];
+
+function AppleIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+    </svg>
+  );
+}
 
 export function FintechLanding() {
   return (
@@ -112,21 +121,33 @@ export function FintechLanding() {
           <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
             <BrandLogo size="md" priority />
             <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-              {nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-slate-400 transition-colors hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {nav.map((item) =>
+                item.href.startsWith("#") ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
             </nav>
             <a
-              href="#waitlist"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
             >
-              Student waitlist
+              Download free
             </a>
           </div>
         </header>
@@ -154,10 +175,13 @@ export function FintechLanding() {
                 </p>
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <a
-                    href="#waitlist"
-                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-teal-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
+                    href={APP_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
                   >
-                    Join the student waitlist
+                    <AppleIcon />
+                    Download on the App Store
                   </a>
                   <a
                     href="#projection"
@@ -169,7 +193,7 @@ export function FintechLanding() {
 
                 {/* quick-hit chips */}
                 <div className="mt-8 flex flex-wrap gap-2">
-                  {["70/10/10/10 plan", "Graduation projections", "AI money coach", "7-day free trial"].map(
+                  {["70/10/10/10 plan", "Graduation projections", "AI money coach", "Free — no subscription"].map(
                     (chip) => (
                       <span
                         key={chip}
@@ -375,46 +399,52 @@ export function FintechLanding() {
             </div>
           </section>
 
-          {/* PRICING (aligned to the app) */}
-          <section id="pricing" className="border-t border-white/10 bg-slate-950/50 py-20 sm:py-28">
+          {/* DOWNLOAD — everything is free */}
+          <section id="download" className="border-t border-white/10 bg-slate-950/50 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
               <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Priced for a student budget
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                  Free, forever
+                </span>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  Every feature. No subscription.
                 </h2>
                 <p className="mt-4 text-lg text-slate-400">
-                  Start free and build the habit. Upgrade for the AI coach and
-                  deeper insights—with a 7-day free trial, cancel anytime.
+                  Movus is free on the App Store—no trial to remember, no card to
+                  enter, nothing locked behind an upgrade.
                 </p>
               </div>
-              <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-                  <p className="text-sm font-medium text-blue-300">Free</p>
-                  <p className="mt-2 text-4xl font-semibold text-white">$0</p>
-                  <p className="mt-1 text-sm text-slate-400">forever</p>
-                  <ul className="mt-8 space-y-3 text-sm text-slate-300">
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> 70/10/10/10 budgeting</li>
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> Pathway to Graduation projections</li>
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> Financial Health Score &amp; daily reflections</li>
-                  </ul>
-                </div>
-                <div className="relative rounded-2xl border border-blue-500/40 bg-gradient-to-b from-blue-500/10 to-slate-900/80 p-8 shadow-xl shadow-blue-500/10">
-                  <span className="absolute -top-3 right-6 rounded-full bg-blue-400 px-3 py-0.5 text-xs font-semibold text-slate-950">
-                    Save 33%
-                  </span>
-                  <p className="text-sm font-medium text-blue-300">Premium</p>
-                  <p className="mt-2 text-4xl font-semibold text-white">
-                    $6.67<span className="text-lg font-normal text-slate-400">/mo</span>
-                  </p>
-                  <p className="mt-1 text-sm text-slate-400">billed yearly ($79.99) · or $9.99 monthly</p>
-                  <ul className="mt-8 space-y-3 text-sm text-slate-200">
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> Everything in Free</li>
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> Unlimited AI advisor &amp; weekly insights</li>
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> Advanced trends &amp; report exports</li>
-                    <li className="flex gap-2"><span className="text-emerald-400">✓</span> 7-day free trial · cancel anytime</li>
-                  </ul>
+
+              <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-blue-500/30 bg-gradient-to-b from-blue-500/10 to-slate-900/80 p-8 shadow-xl shadow-blue-500/10 sm:p-10">
+                <ul className="grid gap-3 text-sm text-slate-200 sm:grid-cols-2">
+                  {[
+                    "70/10/10/10 budgeting",
+                    "Pathway to Graduation projections",
+                    "Financial Health Score & daily reflections",
+                    "AI money coach & weekly insights",
+                    "Semester-smart budgets & bill reminders",
+                    "Streaks, trends & reflections",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-0.5 shrink-0 text-emerald-400">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-10 flex justify-center">
+                  <a
+                    href={APP_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
+                  >
+                    <AppleIcon />
+                    Download on the App Store
+                  </a>
                 </div>
               </div>
+
               <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-slate-500">
                 Not financial advice. Movus provides budgeting tools and general education.
               </p>
@@ -453,6 +483,17 @@ export function FintechLanding() {
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
             <BrandLogo size="sm" />
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+              <Link href="/blog" className="hover:text-white">
+                Blog
+              </Link>
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                App Store
+              </a>
               <Link href="/privacy" className="hover:text-white">
                 Privacy Policy
               </Link>
