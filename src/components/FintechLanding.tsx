@@ -13,10 +13,12 @@ const landingImages = {
     "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
 } as const;
 
+// The blog is built but not launched — /blog and /admin still work by direct
+// URL. Re-add { label: "Blog", href: "/blog" } here (and the footer link) to
+// surface it publicly.
 const nav = [
   { label: "How it works", href: "#product" },
   { label: "Projections", href: "#projection" },
-  { label: "Blog", href: "/blog" },
 ];
 
 // Widely reported U.S. figures used to frame the problem. Keep citations handy
@@ -483,9 +485,6 @@ export function FintechLanding() {
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
             <BrandLogo size="sm" />
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-              <Link href="/blog" className="hover:text-white">
-                Blog
-              </Link>
               <a
                 href={APP_STORE_URL}
                 target="_blank"
