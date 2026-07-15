@@ -23,12 +23,14 @@ export default async function BlogIndexPage() {
   const supabase = createPublicClient();
 
   // RLS keeps drafts out of this result even though we query with the anon key.
-  const { data, error } = await supabase
-    .from("blog_posts")
-    .select(POST_SUMMARY_COLUMNS)
-    .eq("status", "published")
-    .order("published_at", { ascending: false })
-    .returns<BlogPostSummary[]>();
+  const { data, error } = supabase
+    ? await supabase
+        .from("blog_posts")
+        .select(POST_SUMMARY_COLUMNS)
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .returns<BlogPostSummary[]>()
+    : { data: null, error: null };
 
   if (error) {
     console.error("[blog] failed to load posts:", error);

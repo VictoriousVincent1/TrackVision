@@ -22,6 +22,8 @@ type PageProps = {
 export async function generateStaticParams() {
   try {
     const supabase = createPublicClient();
+    if (!supabase) return [];
+
     const { data } = await supabase
       .from("blog_posts")
       .select("slug")
@@ -37,6 +39,8 @@ export async function generateStaticParams() {
 
 async function getPost(slug: string): Promise<BlogPost | null> {
   const supabase = createPublicClient();
+  // Blog not configured yet — every article is a 404 until it is.
+  if (!supabase) return null;
 
   // maybeSingle(): a missing (or unpublished, per RLS) slug is a 404, not an error.
   const { data, error } = await supabase
