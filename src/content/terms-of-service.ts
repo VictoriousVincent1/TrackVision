@@ -28,7 +28,7 @@ The Service is intended solely for informational and organizational purposes.`,
     },
     {
       heading: "3. No Financial Advice",
-      content: `The Service does not provide:
+      lastUpdated: "August 2, 2026",
 
 • Financial advice
 • Investment advice
