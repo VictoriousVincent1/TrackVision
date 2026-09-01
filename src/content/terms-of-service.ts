@@ -28,17 +28,17 @@ The Service is intended solely for informational and organizational purposes.`,
     },
     {
       heading: "3. No Financial Advice",
-      lastUpdated: "August 2, 2026",
+      content: `The Service does not provide professional financial, legal, tax, or accounting advice.
 
-• Financial advice
-• Investment advice
-• Legal advice
-• Tax advice
-• Accounting advice
+    • Financial advice
+    • Investment advice
+    • Legal advice
+    • Tax advice
+    • Accounting advice
 
-Any information, recommendation, projection, forecast, score, rating, analysis, or AI-generated output is provided for informational purposes only.
+    Any information, recommendation, projection, forecast, score, rating, analysis, or AI-generated output is provided for informational purposes only.
 
-You are solely responsible for any financial decisions you make.`,
+    You are solely responsible for any financial decisions you make.`,
     },
     {
       heading: "4. AI Disclaimer",
