@@ -7,9 +7,10 @@ type Props = {
   title: string;
   description?: string;
   imageSrc?: string;
+  tasks?: string[];
 };
 
-export default function StepFeedback({ id, title, description, imageSrc }: Props) {
+export default function StepFeedback({ id, title, description, imageSrc, tasks = [] }: Props) {
   const [rating, setRating] = useState<number | "">("");
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
@@ -39,6 +40,16 @@ export default function StepFeedback({ id, title, description, imageSrc }: Props
       <div>
         <h3 style={{ margin: 0 }}>{title}</h3>
         {description && <p style={{ color: "#cbd5e1" }}>{description}</p>}
+        {tasks.length > 0 && (
+          <div style={{ marginBottom: 12 }}>
+            <strong style={{ display: "block", marginBottom: 6 }}>What to test</strong>
+            <ul style={{ margin: 0, paddingLeft: 18, color: "#9aa6b2" }}>
+              {tasks.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div style={{ borderRadius: 10, overflow: "hidden", background: "#0b1220", border: "1px solid rgba(255,255,255,0.04)", maxWidth: 680 }}>
           {imageSrc ? (
             // Image path should be placed in `public/images/testers/` (e.g. step-1.png)
