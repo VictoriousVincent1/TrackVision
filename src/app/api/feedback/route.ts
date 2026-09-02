@@ -13,7 +13,10 @@ type Payload = {
 
 async function appendToSheet(payload: Payload) {
   const sheetId = process.env.SHEET_ID || process.env.GOOGLE_SHEET_ID;
-  const keyJson = process.env.GOOGLE_SERVICE_ACCOUNT_KEY; // JSON string
+  // Support either raw JSON in GOOGLE_SERVICE_ACCOUNT_KEY or base64 in GOOGLE_SERVICE_ACCOUNT_KEY_B64
+  const keyJsonRaw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+  const keyJsonB64 = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_B64;
+  const keyJson = keyJsonRaw || (keyJsonB64 ? Buffer.from(keyJsonB64, "base64").toString("utf8") : undefined);
 
   if (!sheetId || !keyJson) {
     throw new Error("Google Sheets not configured (SHEET_ID or GOOGLE_SERVICE_ACCOUNT_KEY missing)");
