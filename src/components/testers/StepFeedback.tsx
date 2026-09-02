@@ -50,7 +50,7 @@ export default function StepFeedback({ id, title, description, imageSrc, tasks =
             </ul>
           </div>
         )}
-        <div style={{ borderRadius: 10, overflow: "hidden", background: "#0b1220", border: "1px solid rgba(255,255,255,0.04)", maxWidth: 680 }}>
+        <div style={{ borderRadius: 10, overflow: "hidden", background: "#0b1220", border: "1px solid rgba(255,255,255,0.04)", maxWidth: 340 }}>
           {imageSrc ? (
             // Image path should be placed in `public/images/testers/` (e.g. step-1.png)
             // If you prefer to use different names, pass the full path in `imageSrc`.
