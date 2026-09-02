@@ -41,11 +41,15 @@ export async function POST(req: Request) {
       ...body,
       submittedAt: new Date().toISOString(),
     };
-
     // Try Google Sheets first if configured
+    let savedTo: "sheet" | "local" | "none" = "none";
+    let sheetError: string | undefined;
     try {
       await appendToSheet(payload);
-    } catch (sheetErr) {
+      savedTo = "sheet";
+    } catch (sheetErr: any) {
+      console.error("Sheets append failed:", sheetErr);
+      sheetError = String(sheetErr?.message || sheetErr);
       // Fallback to local JSON storage
       const root = process.cwd();
       const dataDir = path.join(root, "feedbacks");
@@ -65,9 +69,10 @@ export async function POST(req: Request) {
 
       arr.push(payload);
       fs.writeFileSync(file, JSON.stringify(arr, null, 2));
+      savedTo = "local";
     }
 
-    return NextResponse.json({ ok: true, payload });
+    return NextResponse.json({ ok: true, payload, savedTo, sheetError });
   } catch (err) {
     return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });
   }
