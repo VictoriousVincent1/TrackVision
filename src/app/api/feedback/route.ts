@@ -24,7 +24,11 @@ async function appendToSheet(payload: Payload) {
 
   const key = JSON.parse(keyJson);
   const scopes = ["https://www.googleapis.com/auth/spreadsheets"];
-  const auth = new google.auth.JWT(key.client_email, undefined, key.private_key, scopes);
+  const auth = new google.auth.JWT({
+    email: key.client_email,
+    key: key.private_key,
+    scopes,
+  });
   const sheets = google.sheets({ version: "v4", auth });
 
   const values = [[payload.submittedAt || new Date().toISOString(), payload.stepId, payload.title || "", String(payload.rating || ""), payload.comment || ""]];
