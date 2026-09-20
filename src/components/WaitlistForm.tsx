@@ -74,7 +74,7 @@ export function WaitlistForm({ className = "" }: WaitlistFormProps) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100 disabled:opacity-70"
+          className="rounded-full bg-white px-8 py-3 font-mono text-xs uppercase tracking-wider text-slate-950 transition hover:bg-slate-100 disabled:opacity-70"
         >
           {status === "loading" ? "Saving…" : "Join student waitlist"}
         </button>

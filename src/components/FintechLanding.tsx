@@ -2,23 +2,21 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { SectionImage } from "@/components/SectionImage";
 import { WaitlistForm } from "@/components/WaitlistForm";
-import { ProjectionCalculator } from "@/components/ProjectionCalculator";
+import { TimelineRaceTrack } from "@/components/features/TimelineRaceTrack";
+import { HealthScoreGauge } from "@/components/features/HealthScoreGauge";
+import { AIAdvisorPreview } from "@/components/features/AIAdvisorPreview";
 import { APP_STORE_URL } from "@/lib/site";
 
 const landingImages = {
-  hero: "/images/pool.jpeg",
   security:
     "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
   waitlist:
     "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
 } as const;
 
-// The blog is built but not launched — /blog and /admin still work by direct
-// URL. Re-add { label: "Blog", href: "/blog" } here (and the footer link) to
-// surface it publicly.
 const nav = [
   { label: "How it works", href: "#product" },
-  { label: "Projections", href: "#projection" },
+  { label: "Blog", href: "/blog" },
 ];
 
 // Widely reported U.S. figures used to frame the problem. Keep citations handy
@@ -29,7 +27,37 @@ const realityStats = [
   { value: "7 in 10", label: "students say money is a top stressor" },
 ];
 
-const features = [
+// The three most differentiated features get the full spotlight treatment
+// below — a live, animated visual instead of a static icon card.
+const topFeatures = [
+  {
+    id: "timeline",
+    eyebrow: "Financial Timeline",
+    title: "Watch your future arrive, milestone by milestone.",
+    description:
+      "Scroll through every year ahead and drop in real milestones — a car, grad school, a first home. Movus calculates the loan amount, credit score, and net-worth impact for each one, live.",
+    Visual: TimelineRaceTrack,
+  },
+  {
+    id: "health-score",
+    eyebrow: "Financial Health Score",
+    title: "One number that actually moves.",
+    description:
+      "Five factors — savings rate, cash flow, budget discipline, goal feasibility, expense stability — rolled into a single 0–100 score, tracked daily so progress is something you can watch climb.",
+    Visual: HealthScoreGauge,
+  },
+  {
+    id: "ai-advisor",
+    eyebrow: "AI Advisor",
+    title: "A coach that already knows your numbers.",
+    description:
+      "Ask about any purchase, milestone, or spending pattern and get an answer grounded in your real budget — not generic advice. Reach it from anywhere in the app.",
+    Visual: AIAdvisorPreview,
+  },
+];
+
+// Everything else Movus does, kept as a lighter-weight grid underneath.
+const secondaryFeatures = [
   {
     title: "The 70/10/10/10 plan",
     description:
@@ -38,36 +66,6 @@ const features = [
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Pathway to Graduation",
-    description:
-      "See exactly where your plan takes you—savings, debt, and investments projected to your graduation date, with on-track/off-track alerts.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-      </svg>
-    ),
-  },
-  {
-    title: "AI money coach",
-    description:
-      "Chat with an advisor that already knows your budget, goals, and debts—plus a weekly check-in that spots one win and one thing to watch.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Financial Health Score",
-    description:
-      "A single 0–100 score from five factors, tracked daily so your progress is something you can actually watch climb.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-18 8.25h18M8.25 12l3 3 4.5-6" />
       </svg>
     ),
   },
@@ -128,7 +126,7 @@ export function FintechLanding() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                    className="font-mono text-xs uppercase tracking-wider text-slate-400 transition-colors hover:text-white"
                   >
                     {item.label}
                   </a>
@@ -136,7 +134,7 @@ export function FintechLanding() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                    className="font-mono text-xs uppercase tracking-wider text-slate-400 transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>
@@ -147,7 +145,7 @@ export function FintechLanding() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
+              className="rounded-full bg-white px-4 py-2 font-mono text-xs uppercase tracking-wider text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
             >
               Download free
             </a>
@@ -155,154 +153,66 @@ export function FintechLanding() {
         </header>
 
         <main>
-          {/* HERO */}
-          <section className="mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              <div className="max-w-xl lg:max-w-none">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
+          {/* HERO — CSS-atmosphere stand-in for a photographic sky (see
+              .hero-atmosphere), serif statement headline, mono UI chrome. */}
+          <section className="hero-atmosphere relative isolate overflow-hidden">
+            <div className="relative z-10 mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24">
+              <div className="mx-auto max-w-3xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-slate-200 backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Built for students &amp; new grads
+                  Built by students, for students
                 </span>
-                <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">
-                  See yourself{" "}
-                  <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
-                    graduate debt-smart
-                  </span>
-                  <span className="text-slate-500">.</span>
+                <h1 className="mt-5 font-serif text-5xl leading-[1.05] font-medium tracking-tight text-white sm:text-6xl md:text-7xl">
+                  See yourself <em className="italic text-cyan-200">graduate</em> debt-smart.
                 </h1>
-                <p className="mt-6 text-lg leading-relaxed text-slate-400">
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
                   Movus turns every paycheck into a simple 70/10/10/10 plan
                   and projects your savings, debt, and investments all the way to
                   your graduation date.
                 </p>
-                <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="mt-10 flex justify-center">
                   <a
                     href={APP_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-mono text-xs uppercase tracking-wider text-slate-950 shadow-lg shadow-black/20 transition hover:bg-slate-100"
                   >
                     <AppleIcon />
                     Download on the App Store
                   </a>
-                  <a
-                    href="#projection"
-                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/25 hover:bg-white/10"
-                  >
-                    See a graduation projection
-                  </a>
                 </div>
 
                 {/* quick-hit chips */}
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {["70/10/10/10 plan", "Graduation projections", "AI money coach", "Free — no subscription"].map(
-                    (chip) => (
-                      <span
-                        key={chip}
-                        className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-slate-300"
-                      >
-                        {chip}
-                      </span>
-                    ),
-                  )}
+                <div className="mt-8 flex flex-wrap justify-center gap-2">
+                  {["70/10/10/10 plan", "AI money coach", "Free — no subscription"].map((chip) => (
+                    <span
+                      key={chip}
+                      className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] uppercase tracking-wide text-slate-300"
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
               </div>
-
-              <SectionImage
-                src={landingImages.hero}
-                alt="Rooftop pool overlooking the city at sunset"
-                priority
-                aspect="portrait"
-                objectPosition="center 35%"
-                className="ring-1 ring-blue-500/20"
-              />
-            </div>
-
-            {/* DASHBOARD MOCKUP — mirrors the real app dashboard */}
-            <div className="relative mt-16 md:mt-20">
-              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-blue-500/20 via-transparent to-purple-500/10 blur-2xl md:-inset-8" />
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-2xl shadow-black/50 backdrop-blur">
-                <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-                  <span className="ml-2 flex-1 truncate text-center text-xs text-slate-500">
-                    Movus · Dashboard
-                  </span>
-                </div>
-                <div className="grid gap-px bg-white/5 md:grid-cols-3">
-                  {/* Financial Health + Budget Pulse */}
-                  <div className="bg-slate-900/90 p-6 md:col-span-2">
-                    <div className="flex items-center gap-4">
-                      <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-blue-500/15">
-                        <span className="text-2xl font-semibold tabular-nums text-blue-300">73</span>
-                      </div>
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
-                          Financial health
-                        </p>
-                        <p className="text-lg font-semibold text-white">Good · 73/100</p>
-                        <p className="text-xs text-emerald-400">+6 this month</p>
-                      </div>
-                    </div>
-
-                    <p className="mt-6 text-xs font-medium uppercase tracking-wider text-slate-500">
-                      Budget Pulse · 70/10/10/10
-                    </p>
-                    <div className="mt-3 space-y-2.5">
-                      {[
-                        { label: "Living", pct: 62, color: "bg-emerald-500" },
-                        { label: "Debt", pct: 100, color: "bg-rose-500" },
-                        { label: "Savings", pct: 85, color: "bg-blue-500" },
-                        { label: "Invest", pct: 40, color: "bg-purple-500" },
-                      ].map((row) => (
-                        <div key={row.label} className="flex items-center gap-3">
-                          <span className="w-14 text-xs text-slate-400">{row.label}</span>
-                          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
-                            <div className={`h-full rounded-full ${row.color}`} style={{ width: `${row.pct}%` }} />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pathway projection sidebar */}
-                  <div className="space-y-px bg-white/5">
-                    <div className="bg-slate-900/90 p-5">
-                      <p className="text-xs text-slate-500">Savings by graduation</p>
-                      <p className="mt-1 text-xl font-semibold tabular-nums text-blue-300">$5,400</p>
-                    </div>
-                    <div className="bg-slate-900/90 p-5">
-                      <p className="text-xs text-slate-500">Debt at graduation</p>
-                      <p className="mt-1 text-xl font-semibold tabular-nums text-emerald-300">$0</p>
-                    </div>
-                    <div className="bg-slate-900/90 p-5">
-                      <p className="text-xs text-slate-500">Pathway status</p>
-                      <p className="mt-1 text-sm font-medium text-emerald-300">On track · Jun 2028</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-3 text-center text-xs text-slate-600">Example dashboard for illustration.</p>
             </div>
           </section>
 
           {/* THE REALITY (student stats) */}
           <section className="border-t border-white/10 bg-slate-950/50 py-16 sm:py-20">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <p className="text-center text-sm font-medium uppercase tracking-wider text-slate-500">
+              <p className="text-center font-mono text-xs uppercase tracking-widest text-slate-500">
                 The reality for students
               </p>
               <div className="mx-auto mt-8 grid max-w-4xl gap-6 sm:grid-cols-3">
                 {realityStats.map((s) => (
                   <div key={s.label} className="text-center">
-                    <p className="text-4xl font-semibold tabular-nums text-white sm:text-5xl">{s.value}</p>
+                    <p className="font-serif text-4xl font-medium tabular-nums text-white sm:text-5xl">{s.value}</p>
                     <p className="mt-2 text-sm text-slate-400">{s.label}</p>
                   </div>
                 ))}
               </div>
-              <p className="mx-auto mt-8 max-w-2xl text-center text-lg text-slate-300">
-                Nobody handed you a class on this. Movus is the money coach
+              <p className="mx-auto mt-8 max-w-2xl text-center font-serif text-2xl leading-snug text-slate-200 sm:text-3xl">
+                Nobody handed you a class on this. Movus is the <em className="italic text-cyan-200">money coach</em>{" "}
                 that turns the overwhelming into a plan you can actually follow.
               </p>
               <p className="mx-auto mt-4 max-w-3xl text-center text-xs text-slate-600">
@@ -311,11 +221,60 @@ export function FintechLanding() {
             </div>
           </section>
 
-          {/* PRODUCT / FEATURES */}
+          {/* PRODUCT / TOP 3 FEATURES — live, animated, not screenshots */}
           <section id="product" className="border-t border-white/10 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((f) => (
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="font-mono text-xs uppercase tracking-widest text-slate-500">The top 3, live</p>
+                <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                  Not screenshots. The <em className="italic text-cyan-200">real thing</em>, moving.
+                </h2>
+              </div>
+
+              <div className="mt-16 space-y-20">
+                {topFeatures.map((f, i) => {
+                  const Visual = f.Visual;
+                  const textBlock = (
+                    <div>
+                      <p className="font-mono text-xs uppercase tracking-widest text-cyan-300">{f.eyebrow}</p>
+                      <h3 className="mt-3 font-serif text-2xl font-medium tracking-tight text-white sm:text-3xl">
+                        {f.title}
+                      </h3>
+                      <p className="mt-4 text-base leading-relaxed text-slate-400">{f.description}</p>
+                    </div>
+                  );
+                  const visualBlock = (
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+                      <Visual />
+                    </div>
+                  );
+                  return (
+                    <div
+                      key={f.id}
+                      id={f.id}
+                      className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+                    >
+                      {i % 2 === 1 ? (
+                        <>
+                          {visualBlock}
+                          {textBlock}
+                        </>
+                      ) : (
+                        <>
+                          {textBlock}
+                          {visualBlock}
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="mx-auto mt-16 max-w-2xl text-center font-mono text-xs uppercase tracking-widest text-slate-500">
+                And everything else you&apos;d expect
+              </p>
+              <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                {secondaryFeatures.map((f) => (
                   <div
                     key={f.title}
                     className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-blue-500/30 hover:bg-white/[0.05]"
@@ -323,31 +282,11 @@ export function FintechLanding() {
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300 transition group-hover:bg-blue-500/20">
                       {f.icon}
                     </div>
-                    <h3 className="mt-5 font-semibold text-white">{f.title}</h3>
+                    <h4 className="mt-5 font-semibold text-white">{f.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-slate-400">{f.description}</p>
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
-
-          {/* PROJECTION SPOTLIGHT */}
-          <section id="projection" className="border-t border-white/10 bg-slate-950/50 py-20 sm:py-28">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Know your finish line before you get there.
-                </h2>
-                <p className="mt-4 text-lg text-slate-400">
-                  Pathway to Graduation turns today&apos;s plan into tomorrow&apos;s
-                  numbers—so you can adjust now, while it still counts.
-                </p>
-              </div>
-
-              <ProjectionCalculator />
-              <p className="mx-auto mt-4 max-w-3xl text-center text-xs text-slate-600">
-                Interactive estimate for illustration; your real numbers depend on your income, plan, and goals.
-              </p>
             </div>
           </section>
 
@@ -371,8 +310,8 @@ export function FintechLanding() {
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
               <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
                 <div>
-                  <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                    Your money data, treated like it&apos;s yours.
+                  <h2 className="font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                    Your money data, treated like it&apos;s <em className="italic text-cyan-200">yours</em>.
                   </h2>
                   <p className="mt-4 text-lg text-slate-400">
                     Your budget, goals, and income are private. We build for trust
@@ -405,11 +344,11 @@ export function FintechLanding() {
           <section id="download" className="border-t border-white/10 bg-slate-950/50 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
               <div className="mx-auto max-w-2xl text-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-emerald-300">
                   Free, forever
                 </span>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Every feature. No subscription.
+                <h2 className="mt-5 font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                  Every feature. <em className="italic text-cyan-200">No subscription.</em>
                 </h2>
                 <p className="mt-4 text-lg text-slate-400">
                   Movus is free on the App Store—no trial to remember, no card to
@@ -439,7 +378,7 @@ export function FintechLanding() {
                     href={APP_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-mono text-xs uppercase tracking-wider text-slate-950 shadow-lg shadow-white/10 transition hover:bg-slate-100"
                   >
                     <AppleIcon />
                     Download on the App Store
@@ -464,8 +403,8 @@ export function FintechLanding() {
                   className="order-2 lg:order-1"
                 />
                 <div className="order-1 text-center lg:order-2 lg:text-left">
-                  <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                    Get in before graduation season.
+                  <h2 className="font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                    Get in before <em className="italic text-cyan-200">graduation season</em>.
                   </h2>
                   <p className="mt-4 text-lg text-slate-400">
                     Join the waitlist for early access and a free grad-money
@@ -484,7 +423,7 @@ export function FintechLanding() {
         <footer className="border-t border-white/10 py-10">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
             <BrandLogo size="sm" />
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+            <div className="flex flex-wrap items-center justify-center gap-6 font-mono text-xs uppercase tracking-wider text-slate-500">
               <a
                 href={APP_STORE_URL}
                 target="_blank"
@@ -493,6 +432,9 @@ export function FintechLanding() {
               >
                 App Store
               </a>
+              <Link href="/blog" className="hover:text-white">
+                Blog
+              </Link>
               <Link href="/privacy" className="hover:text-white">
                 Privacy Policy
               </Link>

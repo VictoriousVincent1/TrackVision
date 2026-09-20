@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +24,104 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Feature-spotlight animations (Financial Timeline race track, AI Advisor
+   chat preview), applied conditionally from JS state (useInView) via a
+   literal Tailwind class name. Declared as --animate-* theme tokens with
+   nested @keyframes — Tailwind v4's own convention (see animate-spin/bounce
+   in node_modules/tailwindcss/theme.css) — rather than plain top-level
+   @keyframes, which its build pipeline treats as unused and strips since
+   nothing in the scanned templates references them as a recognized utility. */
+@theme {
+  --animate-race-move: race-move 3.4s ease-in-out forwards;
+  --animate-chat-user: chat-user 7s ease-in-out infinite;
+  --animate-chat-typing: chat-typing 7s ease-in-out infinite;
+  --animate-chat-advisor: chat-advisor 7s ease-in-out infinite;
+
+  @keyframes race-move {
+    0% {
+      left: 4%;
+    }
+    100% {
+      left: 86%;
+    }
+  }
+
+  @keyframes chat-user {
+    0%,
+    4% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    8%,
+    80% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    92%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes chat-typing {
+    0%,
+    16% {
+      opacity: 0;
+    }
+    20%,
+    34% {
+      opacity: 1;
+    }
+    38%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes chat-advisor {
+    0%,
+    36% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    40%,
+    80% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    92%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* Hero atmosphere: a CSS-only stand-in for a photographic sky — a soft
+   blue/teal aurora wash plus a faint film-grain texture (SVG feTurbulence
+   data URI, no image request) — used behind the hero's serif headline. */
+.hero-atmosphere {
+  background-image:
+    radial-gradient(120% 90% at 20% 0%, rgba(56, 189, 248, 0.55), transparent 60%),
+    radial-gradient(100% 80% at 85% 15%, rgba(45, 212, 191, 0.4), transparent 55%),
+    radial-gradient(140% 100% at 50% 100%, rgba(30, 58, 138, 0.9), transparent 70%),
+    linear-gradient(180deg, #0b1a3a 0%, #060d1f 100%);
+}
+
+.hero-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
